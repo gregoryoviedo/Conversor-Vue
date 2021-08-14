@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header title="Proyecto Vue - Gregory" />
+  <div class="container">
+    <div class="row">
+      <Form v-on:nuevo-item="HandleSubmit"/>
+      <div class="col-lg-12">
+        <List v-bind:items="items" v-on:del-item="deleteItem"/>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import List from './components/List.vue'
+import Form from './components/Form.vue'
 
 export default {
   name: 'App',
+  data(){
+    return {
+      items:[]
+    }
+  },
   components: {
-    HelloWorld
+    Header,
+    List,
+    Form,
+  },
+  methods:{
+    HandleSubmit(agregar){
+      this.items = [...this.items,agregar]
+    },
+    deleteItem(id){
+      this.items = this.items.filter((item) => item.id !== id)
+    }
   }
-}
+};
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    background-color: #eee;
+  }
 </style>
