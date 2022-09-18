@@ -1,27 +1,29 @@
 <template>
-<table class="bg-light table mt-4">
-  <tbody>
-    <tr v-bind:key="item.id" v-for="item in items">
-      <ListItems v-bind:id="item.id" v-bind:title="item.title"
-      v-bind:item="item" v-on:del-item="$emit('del-item', item.id)"
-      v-bind:items="items"/>
-    </tr>
-  </tbody>
-</table>
+  <div class="row mt-4">
+    <div class="col-3" v-bind:key="item.id" v-for="item in items">
+      <ListItems
+        v-bind:id="item.id"
+        v-bind:title="item.title"
+        v-bind:item="item"
+        v-on:del-item="$emit('del-item', item.id)"
+        v-bind:items="items"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-import ListItems from './ListItems.vue';
+import ListItems from "./ListItems.vue";
 export default {
   name: "List",
   components: {
-    ListItems
+    ListItems,
   },
-  props: ["items"]
-}
+  props: ["items"],
+};
 </script>
 <style scoped>
-table {
-  border: 2px solid #5679DE;
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 </style>

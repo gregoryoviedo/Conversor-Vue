@@ -1,16 +1,22 @@
 <template>
-  <td>
-    <span class="font-weight-bold">Recibir</span> {{item.cantidad}}
-  </td>
-  <td>
-     <span class="font-weight-bold">Enviar</span> {{item.cantidad + (item.cantidad * 5) / 100}}
-  </td>
-  <td>
-     <span class="font-weight-bold">Comision</span> {{ (item.cantidad * 5) / 100}} 
-  </td>
-  <td>
-    <button @click="$emit('del-item', item.id)" class="btn btn-danger btn-sm float right"><i class="fas fa-trash-alt"></i></button>
-  </td>
+  <div class="card text-dark bg-light mb-3">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <span>Receive {{ item.cantidad }}</span>
+
+      <p class="card-text">
+        Send {{ item.cantidad + (item.cantidad * 5) / 100 }}
+      </p>
+      <p class="card-text">Commission {{ (item.cantidad * 5) / 100 }}</p>
+      <button
+        @click="$emit('del-item', item.id)"
+        class="btn btn-danger btn-sm float-right"
+      >
+        Delete
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,3 +25,8 @@ export default {
   props: ["item", "items", "cantidad", "id"],
 };
 </script>
+<style scoped>
+.dolar {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+</style>
